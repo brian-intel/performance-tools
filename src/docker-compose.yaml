@@ -1,0 +1,26 @@
+#
+# Copyright (C) 2024 Intel Corporation.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+
+ ## Current Developer Toolbox doesn't support environment files, make sure to remove any files or environment variables starting with $
+version: '3'
+services:
+  performance-tools:
+    image: performance-tools:dev
+    container_name: performance-tools
+    user: root
+    privileged: true
+    volumes:
+      - $log_dir:/tmp/xpumdump/
+      - $log_dir:/tmp/results
+      - /sys/firmware/acpi/tables/MCFG:/pcm/sys/firmware/acpi/tables/MCFG:ro 
+      - /proc/bus/pci/:/pcm/proc/bus/pci/ 
+      - /proc/sys/kernel/nmi_watchdog:/pcm/proc/sys/kernel/nmi_watchdog 
+    environment:
+      - XPUM_REST_NO_TLS=1
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/cpu:/dev/cpu

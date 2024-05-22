@@ -69,7 +69,7 @@ do
     touch /tmp/results/igt$deviceNum-$deviceId.csv
     chown 1000:1000 /tmp/results/igt$deviceNum-$deviceId.csv
     # shellcheck disable=SC2086 # Intended work splitting
-    intel_gpu_top -d pci:card=$deviceNum -c -o /tmp/results/igt$deviceNum-$deviceId.csv &
+    intel_gpu_top -d pci:card=$deviceNum -o /tmp/results/igt$deviceNum-$deviceId.csv &
     echo "Starting igt capture for $device in igt$deviceNum-$deviceId.csv"
 done
 
