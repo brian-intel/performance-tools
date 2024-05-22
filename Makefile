@@ -5,6 +5,9 @@
 
 MKDOCS_IMAGE ?= asc-mkdocs
 
+build:
+	docker build --build-arg HTTPS_PROXY=${HTTPS_PROXY} --build-arg HTTP_PROXY=${HTTP_PROXY} -t performance-tools:dev -f Dockerfile .
+
 build-benchmark-docker:
 	cd docker && $(MAKE) build-all
 
